@@ -54,19 +54,7 @@ end
 
 term.clear()
 
-while true do	
-	term.setCursorPos(1,1)
-	term.clearLine()
-	term.write("blocks: " .. blocks)
-	
-	term.setCursorPos(1,2)
-	term.clearLine()
-	term.write("angle: " .. angle)
-	
-	term.setCursorPos(1,3)
-	term.clearLine()
-	term.write("fuel: " .. turtle.getFuelLevel())
-	
+while true do
 	while true do
 		local down = turtle.inspectDown()
 		local front = turtle.inspect()
@@ -89,8 +77,20 @@ while true do
 		turtle.forward()
 		turtle.suck()
 		
+		blocks = blocks + 1
+		
 		log("forward")
 		
-		blocks = blocks + 1
+		term.setCursorPos(1,1)
+		term.clearLine()
+		term.write("blocks: " .. blocks)
+		
+		term.setCursorPos(1,2)
+		term.clearLine()
+		term.write("angle: " .. angle)
+		
+		term.setCursorPos(1,3)
+		term.clearLine()
+		term.write("fuel: " .. turtle.getFuelLevel())
 	end
 end
