@@ -43,12 +43,18 @@ local function log(text)
 end
 
 while true do
-	local down = turtle.inspectDown()
-	local front = turtle.inspect()
+	term.clear()
 	
-	local move = true
+	term.setCursorPos(1,1)
+	term.write("blocks: " .. blocks)
+	
+	term.setCursorPos(1,2)
+	term.write("angle: " .. angle)
 	
 	while true do
+		local down = turtle.inspectDown()
+		local front = turtle.inspect()
+		
 		if not down then
 			turtle.back()
 			turn()
@@ -64,12 +70,4 @@ while true do
 		turtle.forward()
 		blocks = blocks + 1
 	end
-	
-	term.clear()
-	
-	term.setCursorPos(1,1)
-	term.write("blocks: " .. blocks)
-	
-	term.setCursorPos(1,2)
-	term.write("angle: " .. angle)
 end
