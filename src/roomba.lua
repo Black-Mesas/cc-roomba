@@ -41,7 +41,7 @@ local function log(text)
 	
 	table.insert(output,text)
 	
-	for i,line in pairs(log) do
+	for i,line in pairs(output) do
 		term.setCursorPos(1,3 + i)
 		term.clearLine()	
 		term.write(line)
