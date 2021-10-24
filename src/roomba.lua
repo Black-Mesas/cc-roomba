@@ -21,10 +21,14 @@ local function turn()
 	while true do
 		if turn > 0.5 then
 			turtle.turnRight()
+			log("turn right")
+			
 			angle = wrap(angle + 1,-2,2)
 		end
 		if turn < 0.5 then
 			turtle.turnLeft()
+			log("turn left")
+			
 			angle = wrap(angle - 1,-2,2)
 		end
 		
@@ -39,7 +43,7 @@ local function log(text)
 		table.remove(output,10)
 	end
 	
-	table.insert(output,text)
+	table.insert(output,1,text)
 	
 	for i,line in pairs(output) do
 		term.setCursorPos(1,3 + i)
