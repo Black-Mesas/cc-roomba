@@ -38,7 +38,7 @@ local function turn()
 	end
 end
 
-local function log(text)
+function log(text)
 	if #output > 10 then
 		table.remove(output,10)
 	end
