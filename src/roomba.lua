@@ -34,7 +34,7 @@ local function turn()
 	end
 end
 
-local function log(text)
+local function output(text)
 	if #log > 10 then
 		table.remove(log,10)
 	end
@@ -61,22 +61,22 @@ while true do
 		local front = turtle.inspect()
 		
 		if not down then
-			repeat turtle.down(); log("falling")
+			repeat turtle.down(); output("falling")
 			until turtle.inspectDown()
 			
-			log("landed")
+			output("landed")
 			
 			break
 		end
 		if front then
 			turn()
-			log("hit block")
+			output("hit block")
 			
 			break
 		end
 		
 		turtle.forward()
-		log("forward")
+		output("forward")
 		
 		blocks = blocks + 1
 	end
