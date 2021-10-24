@@ -53,7 +53,7 @@ while true do
 			turtle.back()
 			turn()
 			
-			blocks - blocks - 1
+			blocks = blocks - 1
 			break
 		end
 		if front then
