@@ -28,7 +28,7 @@ local function turn()
 			angle = wrap(angle - 1,-2,2)
 		end
 		
-		if turtle.inspect() then
+		if not turtle.inspect() then
 			break
 		end
 	end
@@ -56,10 +56,9 @@ while true do
 		local front = turtle.inspect()
 		
 		if not down then
-			turtle.back()
-			turn()
+			repeat turtle.down()
+			until turtle.inspectDown()
 			
-			blocks = blocks - 1
 			break
 		end
 		if front then
