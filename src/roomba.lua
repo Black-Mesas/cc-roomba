@@ -51,22 +51,33 @@ while true do
 	term.setCursorPos(1,2)
 	term.write("angle: " .. angle)
 	
+	for i,line in pairs(log) do
+		term.setCursorPos(1,3 + i)
+		term.write(line)
+	end
+	
 	while true do
 		local down = turtle.inspectDown()
 		local front = turtle.inspect()
 		
 		if not down then
-			repeat turtle.down()
+			repeat turtle.down(); log("falling")
 			until turtle.inspectDown()
+			
+			log("landed")
 			
 			break
 		end
 		if front then
 			turn()
+			log("hit block")
+			
 			break
 		end
 		
 		turtle.forward()
+		log("forward")
+		
 		blocks = blocks + 1
 	end
 end
