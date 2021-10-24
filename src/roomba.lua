@@ -1,7 +1,7 @@
 local angle = 0
 local blocks = 0
 
-local last = -1
+local log = {}
 
 assert(turtle,"Machine is not a turtle.")
 
@@ -16,28 +16,31 @@ local function wrap(x,min,max)
 end
 
 local function turn()
-	local next
+	local turn = math.random()
 	
 	while true do
-		next = math.random(0,1)
+		if turn > 0.5 then
+			turtle.turnRight()
+			angle = wrap(angle + 1,-2,2)
+		end
+		if turn < 0.5 then
+			turtle.turnLeft()
+			angle = wrap(angle - 1,-2,2)
+		end
 		
-		if last ~= next then
-			last = next
+		if turtle.inspect() then
 			break
 		end
 	end
-	
-	if next == 0 then
-		turtle.turnRight()
-		angle = wrap(angle - 1,-2,2)
-	end
-	if next == 1 then
-		turtle.turnLeft()
-		angle = wrap(angle + 1,-2,2)
-	end
 end
 
-term.clear()
+local function log(text)
+	if #log > 10 then
+		table.remove(log,10)
+	end
+	
+	table.insert(log,text)
+end
 
 while true do
 	local down = turtle.inspectDown()
@@ -45,22 +48,24 @@ while true do
 	
 	local move = true
 	
-	if not down then
-		turtle.back()
-		turn()
+	while true do
+		if not down then
+			turtle.back()
+			turn()
+			
+			blocks - blocks - 1
+			break
+		end
+		if front then
+			turn()
+			break
+		end
 		
-		blocks = blocks - 1
-		move = false
-	end
-	if front then
-		turn()
-		move = false
-	end
-	
-	if move then
 		turtle.forward()
 		blocks = blocks + 1
 	end
+	
+	term.clear()
 	
 	term.setCursorPos(1,1)
 	term.write("blocks: " .. blocks)
