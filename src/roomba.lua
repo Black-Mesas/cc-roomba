@@ -1,7 +1,7 @@
 local angle = 0
 local blocks = 0
 
-local log = {}
+local output = {}
 
 assert(turtle,"Machine is not a turtle.")
 
@@ -34,49 +34,50 @@ local function turn()
 	end
 end
 
-local function output(text)
-	if #log > 10 then
-		table.remove(log,10)
+local function log(text)
+	if #output > 10 then
+		table.remove(output,10)
 	end
 	
-	table.insert(log,text)
-end
-
-while true do
-	term.clear()
-	
-	term.setCursorPos(1,1)
-	term.write("blocks: " .. blocks)
-	
-	term.setCursorPos(1,2)
-	term.write("angle: " .. angle)
+	table.insert(output,text)
 	
 	for i,line in pairs(log) do
 		term.setCursorPos(1,3 + i)
+		term.clearLine()	
 		term.write(line)
 	end
+end
+
+while true do	
+	term.setCursorPos(1,1)
+	term.clearLine()
+	term.write("blocks: " .. blocks)
+	
+	term.setCursorPos(1,2)
+	term.clearLine()
+	term.write("angle: " .. angle)
 	
 	while true do
 		local down = turtle.inspectDown()
 		local front = turtle.inspect()
 		
 		if not down then
-			repeat turtle.down(); output("falling")
+			repeat turtle.down(); log("falling")
 			until turtle.inspectDown()
 			
-			output("landed")
+			log("landed")
 			
 			break
 		end
 		if front then
 			turn()
-			output("hit block")
+			log("hit block")
 			
 			break
 		end
 		
 		turtle.forward()
-		output("forward")
+		log("forward")
 		
 		blocks = blocks + 1
 	end
