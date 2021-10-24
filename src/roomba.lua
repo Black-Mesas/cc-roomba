@@ -39,14 +39,14 @@ local function turn()
 end
 
 function log(text)
-	if #output > 10 then
-		table.remove(output,10)
+	if #output > 9 then
+		table.remove(output,9)
 	end
 	
 	table.insert(output,1,text)
 	
 	for i,line in pairs(output) do
-		term.setCursorPos(1,3 + i)
+		term.setCursorPos(1,4 + i)
 		term.clearLine()	
 		term.write(line)
 	end
@@ -62,6 +62,10 @@ while true do
 	term.setCursorPos(1,2)
 	term.clearLine()
 	term.write("angle: " .. angle)
+	
+	term.setCursorPos(1,3)
+	term.clearLine()
+	term.write("fuel: " .. turtle.getFuelLevel())
 	
 	while true do
 		local down = turtle.inspectDown()
