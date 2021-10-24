@@ -52,6 +52,8 @@ local function log(text)
 	end
 end
 
+term.clear()
+
 while true do	
 	term.setCursorPos(1,1)
 	term.clearLine()
@@ -81,6 +83,8 @@ while true do
 		end
 		
 		turtle.forward()
+		turtle.suck()
+		
 		log("forward")
 		
 		blocks = blocks + 1
