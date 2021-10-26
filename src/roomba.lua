@@ -23,13 +23,13 @@ local function turn()
 			turtle.turnRight()
 			log("turn right")
 			
-			angle = wrap(angle + 1,-2,2)
+			angle = wrap(angle + 1,-1,2)
 		end
 		if direction == 1 then
 			turtle.turnLeft()
 			log("turn left")
 			
-			angle = wrap(angle - 1,-2,2)
+			angle = wrap(angle - 1,-1,2)
 		end
 		
 		if not turtle.inspect() then
