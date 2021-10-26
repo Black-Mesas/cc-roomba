@@ -74,6 +74,7 @@ while true do
 			break
 		end
 		
+		turtle.suck()
 		turtle.forward()
 		blocks = blocks + 1
 		
@@ -90,9 +91,5 @@ while true do
 		term.setCursorPos(1,3)
 		term.clearLine()
 		term.write("fuel: " .. turtle.getFuelLevel())
-		
-		if not turtle.inspect() then
-			turtle.suck()
-		end
 	end
 end
