@@ -16,16 +16,16 @@ local function wrap(x,min,max)
 end
 
 local function turn()
-	local turn = math.random()
+	local direction = math.random(0,1)
 	
 	while true do
-		if turn > 0.5 then
+		if direction == 0 then
 			turtle.turnRight()
 			log("turn right")
 			
 			angle = wrap(angle + 1,-2,2)
 		end
-		if turn < 0.5 then
+		if direction == 1 then
 			turtle.turnLeft()
 			log("turn left")
 			
@@ -75,8 +75,6 @@ while true do
 		end
 		
 		turtle.forward()
-		turtle.suck()
-		
 		blocks = blocks + 1
 		
 		log("forward")
@@ -92,5 +90,9 @@ while true do
 		term.setCursorPos(1,3)
 		term.clearLine()
 		term.write("fuel: " .. turtle.getFuelLevel())
+		
+		if not turtle.inspect() then
+			turtle.suck()
+		end
 	end
 end
