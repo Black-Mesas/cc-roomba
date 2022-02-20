@@ -39,20 +39,23 @@ local function turn()
 end
 
 function log(text)
-	if #output > 9 then
-		table.remove(output,9)
+	if #output > 8 then
+		table.remove(output,8)
 	end
 	
 	table.insert(output,1,text)
 	
 	for i,line in pairs(output) do
-		term.setCursorPos(1,4 + i)
+		term.setCursorPos(1,5 + i)
 		term.clearLine()	
 		term.write(line)
 	end
 end
 
 term.clear()
+
+term.setCursorPos(1,5)
+term.write("--------")
 
 while true do
 	while true do
@@ -74,7 +77,10 @@ while true do
 			break
 		end
 		
-		turtle.suck()
+		if turtle.suck() then
+			log("found item")
+		end
+		
 		turtle.forward()
 		blocks = blocks + 1
 		
